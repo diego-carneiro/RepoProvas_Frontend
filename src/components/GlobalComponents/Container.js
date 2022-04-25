@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import LoginBox from "../LoginComponents/LoginBox";
+import SignInSignUpBox from "./SignInSignUpBox";
 
-export default function Container() {
+export default function Container({ boxContent }) {
     return(
         <Content>
-            <LoginBox />
+            <SignInSignUpBox boxContent={"loginBox"}/>
         </Content>
     );
 }
