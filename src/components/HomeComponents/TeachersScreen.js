@@ -1,31 +1,49 @@
+import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../../providers/auth";
 
 import Button from "../GlobalComponents/Button";
 import { useEffect } from "react";
 
 export default function TeachersScreen() {
   const [items, setItems] = useState([]);
+  const { token } = React.useContext(AuthContext);
 
   useEffect(() => {
-    const promise = axios.get("http://localhost:5000/tests?groupBy=disciplines");
+    const promise = axios.get("http://localhost:5000/tests?groupBy=teachers",
+      {
+        headers: {
+          "Authorization": token
+        }
+      });
     promise.then(response => {
-      setItems(response.data);
-      console.log(items);
+      setItems(response.data.tests);
+
     });
   }, []);
 
-  
   return (
     <Container>
-      <h1>Adicione uma prova</h1>
-      <Button buttonShape={"post"} />
+      {items.map(info => (
+        <TeacherBox>
+          <h1>{info.teacher.name}</h1>
+          <TestBox>
+            {info.tests.map(data => (
+              <>
+                <h2>{data.category.name}</h2>
+                <h3>{data.name}</h3>
+              </>
+            ))}
+          </TestBox>
+        </TeacherBox>
+      ))}
     </Container>
   );
 }
 // ::::::::::Styled-Components::::::::::
-const Container = styled.form`
+const Container = styled.div`
   width: 50%;
   min-height: 800px;
 	padding: 30px;
@@ -36,14 +54,28 @@ const Container = styled.form`
 
 	h1{
 		font-weight: 500;
-		margin-bottom: 30px;
+		margin-bottom: 15px;
 	}
 `
-const Input = styled.input`
-	width: 100%;
-	height: 56px;
-	border-radius: 4px;
-	border: 1px solid rgba(0, 0, 0, 0.23);
-	margin-bottom: 22px;
-	padding: 8px;
+const TeacherBox = styled.div`
+  width: 100%;
+  margin-bottom: 30px;
+
+  h2{
+    font-size: 22px;
+    font-weight: 700;
+  }
 `
+const TestBox = styled.div`
+  width: 100%;
+  padding-left: 20px;
+
+  h2{
+    font-size: 18px;
+  }
+  h3{
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+`
+

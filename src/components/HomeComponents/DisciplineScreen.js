@@ -23,14 +23,15 @@ export default function DisciplineScreen() {
     );
     promise.then(response => {
       setItems(response.data);
+      console.log(items);
     });
   }, []);
 
   console.log(items);
   return (
     <Container>
-      <h1>Adicione uma prova</h1>
-      <Button buttonShape={"post"} />
+      <h1>Provas por Disciplina</h1>
+      
     </Container>
   );
 }
