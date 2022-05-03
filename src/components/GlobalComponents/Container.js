@@ -2,19 +2,19 @@ import styled from "styled-components";
 import SignInSignUpBox from "./SignInSignUpBox";
 
 export default function Container({ boxContent }) {
-    return(
-        <Content>
-            <SignInSignUpBox boxContent={"loginBox"}/>
-        </Content>
-    );
+  return (
+    <Content>
+      <SignInSignUpBox boxContent={boxContent} />
+    </Content>
+  );
 }
 
 // ::::::::::Styled-Components::::::::::
 const Content = styled.div`
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

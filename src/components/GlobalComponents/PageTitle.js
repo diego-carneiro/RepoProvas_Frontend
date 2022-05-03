@@ -5,6 +5,7 @@ export default function PageTitle({ title }) {
     return (
         <>
             {title === "login" && <TitleSection><h1>Login</h1></TitleSection>}
+            {title === "cadastro" && <TitleSection><h1>Cadastro</h1></TitleSection>}
         </>
     );
 }

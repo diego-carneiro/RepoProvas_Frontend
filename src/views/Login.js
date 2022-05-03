@@ -1,17 +1,17 @@
-import styled from "styled-components";
-
+import React from "react";
 import Header from "../components/GlobalComponents/Header";
 import Container from "../components/GlobalComponents/Container";
-import SingInSignUpBox from "../components/GlobalComponents/SignInSignUpBox"
 
 export default function Login() {
+	const storage = (key, value) => {
+		localStorage.setItem(key, value);
+	}
+
 	return (
 		<>
-			<Header />
-			<Container boxContent={"loginBox"}/>
+			<Header headerVersion={"v1"} />
+			<Container boxContent={"loginBox"} />
 		</>
 
 	);
 }
-
-// ::::::::::Styled-Components::::::::::
